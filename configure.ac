@@ -57,7 +57,13 @@ AS_IF([test "x$with_gtest" == "xdownload"],
   [AC_MSG_ERROR([invalid value $with_gtest for with_gtest.])]
 )
 AS_IF([test "x$with_gtest" == "xyes"],
-  [GTEST_CFLAGS="-I`cd $GTEST_PATH/gtest/include; echo $PWD` -I`cd $GTEST_PATH/gtest/; echo $PWD`"]);
+  [
+	GTEST_CFLAGS="-I`cd $GTEST_PATH/gtest/include; echo $PWD` -I`cd $GTEST_PATH/gtest/; echo $PWD`"
+	ACX_PTHREAD([
+		GTEST_LIBS="-pthread"
+	])
+	AC_MSG_WARN([Pthread is ok: $PTHREAD_LIBS])
+  ]);
 AM_CONDITIONAL(with_gtest, test "x$with_gtest" == "xyes")
 
 DEPS_CFLAGS="$GTEST_CFLAGS"

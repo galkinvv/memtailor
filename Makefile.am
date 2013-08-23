@@ -40,8 +40,8 @@ if with_gtest
 TESTS=unittest
 check_PROGRAMS=$(TESTS)
 
-unittest_CXXFLAGS = -I$(top_srcdir)/src/ -std=gnu++0x
-unittest_LDFLAGS = $(top_builddir)/libmemtailor.la
+unittest_CXXFLAGS = -I$(top_srcdir)/src/ -std=gnu++0x $(DEPS_CFLAGS)
+unittest_LDFLAGS = $(top_builddir)/libmemtailor.la $(DEPS_LIBS)
 
 # test_LIBS=
 unittest_SOURCES=src/test/ArenaTest.cpp src/test/BufferPoolTest.cpp	\
